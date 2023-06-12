@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 import Hero from "@/components/Hero";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
@@ -8,7 +9,34 @@ import SectionDescriptor from "@/components/home/SectionDescriptor";
 import styles from "./page.module.scss";
 
 const Regolamento = () => {
-  const [tab, setTab] = useState(0);
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
+
+  const rulesTabs = [
+    "generale",
+    "account",
+    "chat",
+    "cheats",
+    "discord",
+    "towny",
+  ];
+
+  const [tab, setTab] = useState(
+    rulesTabs.indexOf(section ? section : "generale")
+  );
+
+  useEffect(() => {
+    if (section) {
+      let index = rulesTabs.indexOf(section);
+      setTab(index);
+    } else {
+      setTab(0);
+    }
+  }, []);
+
+  const changeTab = (id: number) => {
+    window.location.href = `/regolamento?section=${rulesTabs[id]}`;
+  };
 
   return (
     <main>
@@ -28,37 +56,37 @@ const Regolamento = () => {
           <div className={styles.tab}>
             <button
               className={tab == 0 ? styles.btnActive : ""}
-              onClick={() => setTab(0)}
+              onClick={() => changeTab(0)}
             >
               Generale
             </button>
             <button
               className={tab == 1 ? styles.btnActive : ""}
-              onClick={() => setTab(1)}
+              onClick={() => changeTab(1)}
             >
               Account e Servizi
             </button>
             <button
               className={tab == 2 ? styles.btnActive : ""}
-              onClick={() => setTab(2)}
+              onClick={() => changeTab(2)}
             >
               Chat e Altro
             </button>
             <button
               className={tab == 3 ? styles.btnActive : ""}
-              onClick={() => setTab(3)}
+              onClick={() => changeTab(3)}
             >
               Cheats e Bug
             </button>
             <button
               className={tab == 4 ? styles.btnActive : ""}
-              onClick={() => setTab(4)}
+              onClick={() => changeTab(4)}
             >
               Discord
             </button>
             <button
               className={tab == 5 ? styles.btnActive : ""}
-              onClick={() => setTab(5)}
+              onClick={() => changeTab(5)}
             >
               Towny
             </button>

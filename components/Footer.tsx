@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 
 import { FaDiscord, FaInstagram, FaYoutube, FaTelegram } from "react-icons/fa";
@@ -22,7 +23,9 @@ const Footer = () => {
 
           <ul className={styles.social}>
             <li>
-              <FaDiscord />
+              <Link href="https://discord.gg/8MMXHeT8Vm" target="_blank">
+                <FaDiscord />
+              </Link>
             </li>
             <li>
               <FaInstagram />
@@ -38,45 +41,81 @@ const Footer = () => {
         <div>
           <p>Link Utili</p>
           <ul>
-            <li>Home</li>
+            <li>
+              <Link href={"/"}>Home</Link>
+            </li>
             <br />
-            <li>Guida</li>
+            <li>
+              <Link href={"/"}>Guida</Link>
+            </li>
             <br />
-            <li>Votaci</li>
+            <li>
+              <Link href={"/"}>Votaci</Link>
+            </li>
             <br />
-            <li>Cookie e privacy</li>
+            <li>
+              <Link href={"/"}>Cookie e privacy</Link>
+            </li>
           </ul>
         </div>
         <div>
           <p>Modalità</p>
           <ul>
-            <li>Towny</li>
+            <li>
+              <Link href={"/"}>Towny</Link>
+            </li>
             <br />
-            <li>Survival</li>
+            <li>
+              <Link href={"/"}>Survival</Link>
+            </li>
           </ul>
         </div>
         <div>
           <p>Regolamento</p>
           <ul>
-            <li>Generale</li>
+            <li>
+              <Link href={"/regolamento?section=generale"}>Generale</Link>
+            </li>
             <br />
-            <li>Account e servizi</li>
+            <li>
+              <Link href={"/regolamento?section=account"}>
+                Account e servizi
+              </Link>
+            </li>
             <br />
-            <li>Chat e altro</li>
+            <li>
+              <Link href={"/regolamento?section=chat"}>Chat e altro</Link>
+            </li>
             <br />
-            <li>Discord</li>
+            <li>
+              <Link href={"/regolamento?section=discord"}>Discord</Link>
+            </li>
           </ul>
         </div>
         <div>
           <p>Negozio</p>
           <ul>
-            <li>VIP - Towny</li>
+            <li>
+              <Link href={"https://store.ragnarokmc.it/category/towny-vip"}>
+                VIP - Towny
+              </Link>
+            </li>
             <br />
-            <li>VIP - Survival</li>
+            <li>
+              <Link href={"https://store.ragnarokmc.it/category/vip"}>
+                VIP - Survival
+              </Link>
+            </li>
             <br />
-            <li>Donazione libera</li>
+            <li>
+              <Link href={"https://store.ragnarokmc.it/category/donazione"}>
+                Donazione libera
+              </Link>
+            </li>
             <br />
-            <li>Rimozione ban</li>
+            <li>
+              <Link href={"/"}>Rimozione ban</Link>
+            </li>
           </ul>
         </div>
       </div>

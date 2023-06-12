@@ -35,8 +35,6 @@ const getUsers = async () => {
     }
   });
 
-  console.log(permNames);
-
   let res = permNames.sort(
     (a: any, b: any) =>
       permissions.indexOf(a.primary_group) -

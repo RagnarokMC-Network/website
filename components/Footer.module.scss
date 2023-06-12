@@ -43,7 +43,13 @@
           opacity: 0.8;
         }
 
-        svg {
+        a {
+          height: 20px;
+        }
+
+        svg,
+        a svg {
+          color: white;
           margin: auto;
         }
       }
@@ -60,13 +66,14 @@
     ul {
       margin-top: 25px;
       list-style: none;
-      color: $COLOR_QUINTERNARY;
 
-      li {
+      li a {
         cursor: pointer;
-        margin-bottom: 13px;
+        margin-bottom: 10px;
         transition: 0.15s;
         display: inline-block;
+        color: $COLOR_QUINTERNARY;
+        text-decoration: none;
 
         &:hover {
           transition: 0.15s;
