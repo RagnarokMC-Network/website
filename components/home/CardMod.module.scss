@@ -1,0 +1,47 @@
+@import "@/components/_variables.module.scss";
+
+.card,
+.cardAlt {
+  width: 950px;
+  height: 300px;
+  margin-bottom: 100px;
+  background-color: $COLOR_SECONDARY;
+  box-shadow: 5px 5px 15px #0d0f10, -5px -5px 15px #353b42;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-left: 60px;
+  margin-right: 60px;
+  display: flex;
+
+  .propic {
+    height: 100%;
+    width: 350px;
+    position: relative;
+  }
+
+  .desc {
+    width: calc(100% - 350px);
+    padding: 30px;
+    overflow: hidden;
+
+    h4 {
+      color: $COLOR_PRIMARY;
+    }
+
+    p {
+      margin-top: 20px;
+      color: $COLOR_QUINTERNARY;
+    }
+  }
+
+  .pop {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    left: 1000px;
+  }
+}
+
+.cardAlt {
+  margin-left: auto;
+}

@@ -1,0 +1,120 @@
+@import "./variables.module";
+
+.logo_cnt {
+  display: flex;
+  height: 100%;
+
+  img {
+    margin: auto;
+  }
+
+  h3 {
+    color: white;
+    font-size: 24px;
+    margin: auto;
+    margin-left: 5px;
+  }
+}
+
+.links_cnt {
+  display: flex;
+  height: 100%;
+  margin-left: auto;
+
+  ul {
+    display: flex;
+    margin: auto;
+    list-style: none;
+
+    li {
+      margin: 5px;
+      padding: 5px 10px;
+      transition: 0.15s;
+      position: relative;
+      cursor: pointer;
+      z-index: 2;
+
+      &::before {
+        content: "";
+        z-index: -1;
+        border-radius: 5px;
+        width: 0%;
+        position: absolute;
+        background-color: $COLOR_PRIMARY;
+        height: 0%;
+        left: 0;
+        bottom: 0;
+        transition: 0.15s;
+        animation: linkFiller-out 0.25s forwards;
+      }
+
+      &:hover::before {
+        content: "";
+        animation: linkFiller-in 0.25s forwards;
+      }
+
+      &:hover {
+        transition: 0.15s;
+        color: rgba(255, 255, 255, 1);
+      }
+
+      a {
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+      }
+    }
+
+    .active {
+      &::after {
+        content: "";
+        z-index: -1;
+        border-radius: 5px;
+        width: 100%;
+        position: absolute;
+        background-color: $COLOR_PRIMARY;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+      }
+
+      a {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+}
+
+@keyframes linkFiller-in {
+  0% {
+    width: 0%;
+    height: 1%;
+  }
+
+  75% {
+    width: 100%;
+    height: 1%;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes linkFiller-out {
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+
+  25% {
+    width: 100%;
+    height: 1%;
+  }
+
+  100% {
+    width: 0%;
+    height: 1%;
+  }
+}

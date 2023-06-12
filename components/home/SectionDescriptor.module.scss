@@ -1,0 +1,40 @@
+@import "../variables.module";
+
+.sectionDescriptor {
+  margin-top: 75px;
+
+  .title {
+    display: flex;
+    width: 100%;
+
+    span {
+      width: 45px;
+      height: 3px;
+      display: inline-block;
+      background-color: $COLOR_PRIMARY;
+
+      &:first-child {
+        margin: auto 10px auto auto;
+      }
+
+      &:last-child {
+        margin: auto auto auto 10px;
+      }
+    }
+
+    h3 {
+      font-size: 28px;
+      color: $COLOR_QUATERNARY;
+      position: relative;
+    }
+  }
+
+  .description {
+    p {
+      margin: 10px auto;
+      width: 35vw;
+      text-align: center;
+      color: $COLOR_QUINTERNARY;
+    }
+  }
+}
