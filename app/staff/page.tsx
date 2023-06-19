@@ -11,17 +11,18 @@ const getUsers = async () => {
   const prisma = new PrismaClient();
 
   const permissions = [
-    "owner",
-    "admin",
-    "moderator+",
-    "moderator",
-    "builder",
-    "helper",
+    { id: "owner", color: "#bf0f0f" },
+    { id: "admin", color: "#bf700f" },
+    { id: "moderator+", color: "#0f29bf" },
+    { id: "moderator", color: "#0f29bf" },
+    { id: "builder", color: "#b90fbf" },
+    { id: "helper+", color: "#2ca122" },
+    { id: "helper", color: "#2ca122" },
   ];
 
   const permUsers = await prisma.luckperms_user_permissions.findMany();
   const permitted = permUsers.filter((el) => {
-    if (permissions.some((al) => el.permission.includes(al))) {
+    if (permissions.some((al) => el.permission.includes(al.id))) {
       return el;
     }
 
@@ -35,11 +36,19 @@ const getUsers = async () => {
     }
   });
 
-  let res = permNames.sort(
+  let resColorless = permNames.sort(
     (a: any, b: any) =>
-      permissions.indexOf(a.primary_group) -
-      permissions.indexOf(b.primary_group)
+      permissions.findIndex((el) => el.id == a.primary_group) -
+      permissions.findIndex((el) => el.id == b.primary_group)
   );
+
+  let res = resColorless.map((el) => {
+    // @ts-ignore
+    el.color = permissions.find((al) => al.id == el.primary_group)?.color;
+    return el;
+  });
+
+  console.log(res);
 
   return res;
 };
@@ -70,6 +79,7 @@ const Staff = async () => {
                 username={user.username}
                 uuid={user.uuid}
                 tag={user.primary_group}
+                color={user.color}
               />
             ) : (
               <>
@@ -78,6 +88,7 @@ const Staff = async () => {
                   username={user.username}
                   uuid={user.uuid}
                   tag={user.primary_group}
+                  color={user.color}
                 />
                 <div className={styles.lineBreak}></div>
               </>
