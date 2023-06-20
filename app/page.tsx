@@ -64,7 +64,7 @@ const Home = () => {
             alt="Picture of the author"
           />
           <p>
-            RagnarokMC è un server minecraft, con l'obbiettivo di creare e
+            RagnarokMC è un server minecraft, con l&apos;obbiettivo di creare e
             fornire meccaniche di gioco innovative e garantire un game play
             bello ed entusiasmante, cosa aspetti?
             <br />

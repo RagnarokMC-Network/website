@@ -6,7 +6,6 @@ import Image from "next/image";
 import styles from "./CardStaff.module.scss";
 
 const CardStaff = (props: any) => {
-  console.log(props);
   return (
     <div className={styles.card}>
       <div className={styles.propic}>

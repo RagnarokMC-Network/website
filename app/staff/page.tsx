@@ -1,4 +1,4 @@
-import { PrismaClient } from "@/prisma/generated/client_luckperms";
+import executeQuery from "@/utils/connector";
 
 import Image from "next/image";
 
@@ -8,7 +8,10 @@ import CardStaff from "@/components/staff/CardStaff";
 import styles from "./page.module.scss";
 
 const getUsers = async () => {
-  const prisma = new PrismaClient();
+  const uPerms: any = await executeQuery({
+    query: "SELECT * FROM luckperms_user_permissions",
+    values: null,
+  });
 
   const permissions = [
     { id: "owner", color: "#bf0f0f" },
@@ -20,8 +23,7 @@ const getUsers = async () => {
     { id: "helper", color: "#2ca122" },
   ];
 
-  const permUsers = await prisma.luckperms_user_permissions.findMany();
-  const permitted = permUsers.filter((el) => {
+  const permitted = uPerms.filter((el: any) => {
     if (permissions.some((al) => el.permission.includes(al.id))) {
       return el;
     }
@@ -29,9 +31,15 @@ const getUsers = async () => {
     return;
   });
 
-  const usernames = await prisma.luckperms_players.findMany();
-  const permNames = usernames.filter((el) => {
-    if (permitted.some((al) => al.uuid == el.uuid)) {
+  const users: any = await executeQuery({
+    query: "SELECT * FROM luckperms_players",
+    values: null,
+  });
+
+  if (!users) return [];
+
+  const permNames = users.filter((el: any) => {
+    if (permitted.some((al: any) => al.uuid == el.uuid)) {
       return el;
     }
   });
@@ -42,13 +50,11 @@ const getUsers = async () => {
       permissions.findIndex((el) => el.id == b.primary_group)
   );
 
-  let res = resColorless.map((el) => {
+  let res = resColorless.map((el: any) => {
     // @ts-ignore
     el.color = permissions.find((al) => al.id == el.primary_group)?.color;
     return el;
   });
-
-  console.log(res);
 
   return res;
 };
