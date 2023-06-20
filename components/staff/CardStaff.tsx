@@ -6,6 +6,7 @@ import Image from "next/image";
 import styles from "./CardStaff.module.scss";
 
 const CardStaff = (props: any) => {
+  console.log(props);
   return (
     <div className={styles.card}>
       <div className={styles.propic}>
@@ -20,7 +21,9 @@ const CardStaff = (props: any) => {
         <p className={styles.username}>
           {props.username}
           <br />
-          <span className={styles.tag}>{props.tag}</span>
+          <span className={styles.tag} style={{ backgroundColor: props.color }}>
+            {props.tag}
+          </span>
         </p>
       </div>
     </div>

@@ -4,7 +4,6 @@ import styles from "./CardMod.module.scss";
 
 type ModProp = {
   src: string;
-  pop: string;
   title: string;
   description: string;
   alternate: Boolean;
@@ -30,25 +29,13 @@ const CardMod = (props: ModProp) => {
             <h4>{props.title}</h4>
             <p>{props.description}</p>
           </div>
-          <div className={styles.pop}>
-            <Image
-              src={props.pop}
-              fill={true}
-              objectFit={"contain"}
-              className={styles.wallpaper}
-              alt="Picture of the author"
-            />
-          </div>
         </div>
       )}
       {alternate && (
         <div className={styles.cardAlt}>
           <div className={styles.desc}>
-            <h4>Survival</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius,
-              praesentium!
-            </p>
+            <h4>{props.title}</h4>
+            <p>{props.description}</p>
           </div>
           <div className={styles.propic}>
             <Image

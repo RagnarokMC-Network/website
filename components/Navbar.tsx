@@ -16,9 +16,13 @@ const Navbar = () => {
     { path: "/", title: "Home", desc: "" },
     { path: "/regolamento", title: "Regole", desc: "" },
     { path: "/staff", title: "Staff", desc: "" },
-    { path: "/negozio", title: "Negozio", desc: "" },
-    { path: "/vota", title: "Votaci", desc: "" },
-    { path: "/account", title: "Account", desc: "" },
+    { path: "https://store.ragnarokmc.it/", title: "Negozio", desc: "" },
+    {
+      path: "https://minecraft-italia.net/lista/server/ragnarokmc.it",
+      title: "Votaci",
+      desc: "",
+    },
+    //{ path: "/account", title: "Account", desc: "" },
   ];
 
   useEffect(() => {

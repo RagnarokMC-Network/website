@@ -28,12 +28,18 @@ export async function GET(request: Request) {
   const username = searchParams.get('usr')
   const password = searchParams.get('pwd')
 
+  let response = false;
+
   if (username && password) {
     let hash = getHashFromDatabase(username);
     if (hash && isValidPassword(password, hash)) {
-  
-    } else {}
+      response = true;
+    } else {
+      response = false;
+    }
+  } else {
+    response = false;
   }
  
-  return NextResponse.json({ })
+  return NextResponse.json({ response })
 }

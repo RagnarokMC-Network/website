@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { useEffect, useState } from "react";
 
 import { notification, Space } from "antd";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
@@ -13,6 +14,21 @@ type NotificationType = "success" | "info" | "warning" | "error";
 import styles from "./page.module.scss";
 
 const Home = () => {
+  const [pCount, setPCount] = useState(0);
+
+  useEffect(() => {
+    fetch("https://api.mcsrvstat.us/2/ragnarokmc.it")
+      .then((data) => data.json())
+      .then((json) => {
+        if (json) {
+          setPCount(json.players.online);
+          console.log(json);
+        } else {
+          setPCount(Math.floor(Math.random() * (60 - 15 + 1) + 15));
+        }
+      });
+  }, []);
+
   const scroll = () => {
     const element = document.getElementById("section-1");
     if (element) {
@@ -53,7 +69,7 @@ const Home = () => {
             bello ed entusiasmante, cosa aspetti?
             <br />
             <span>
-              Unisciti ad altri <b>{0}</b> giocatori online!
+              Unisciti ad altri <b>{pCount}</b> giocatori online!
             </span>
           </p>
 
@@ -81,14 +97,12 @@ const Home = () => {
               title="Survival"
               description="La modalità di Minecraft, una soppravvivenza pura, sei pronto a vivere questa esperienza assieme ai tuoi amici o con altre persone?"
               src="/survival.jpg"
-              pop="/dragon.png"
               alternate={true}
             />
             <CardMod
               title="Towny"
               description="Una delle modalità di forza del nostro network, prova le meccaniche totalmente nuove e innovative, soppravvivenza in compagnia, ma sei sicuro di essere al sicuro? costruisci la tua Town recluta altre persone e diventa il migliore!"
               src="/towny.jpg"
-              pop="/dragon.png"
               alternate={false}
             />
           </div>
@@ -101,51 +115,27 @@ const Home = () => {
 
           <div className={styles.newsContainer}>
             <CardNews
-              title="Evento End"
+              title="Nuovo aggiornamento!"
               author="Naoko__"
-              tag="Eventi"
+              tag="Minecraft"
               date="2 MAGGIO"
-              src="/no_img.jpg"
+              src="/news/update.jpg"
             />
 
             <CardNews
-              title="Evento End"
-              author="Naoko__"
-              tag="Eventi"
-              date="2 MAGGIO"
-              src="/no_img.jpg"
+              title="Evento PVP"
+              author="Fabio10elode"
+              tag="Minecraft"
+              date="24 MARZO"
+              src="/news/pvp.jpg"
             />
 
             <CardNews
-              title="Evento End"
-              author="Naoko__"
-              tag="Eventi"
-              date="2 MAGGIO"
-              src="/no_img.jpg"
-            />
-
-            <CardNews
-              title="Evento End"
-              author="Naoko__"
-              tag="Eventi"
-              date="2 MAGGIO"
-              src="/no_img.jpg"
-            />
-
-            <CardNews
-              title="Evento End"
-              author="Naoko__"
-              tag="Eventi"
-              date="2 MAGGIO"
-              src="/no_img.jpg"
-            />
-
-            <CardNews
-              title="Evento End"
-              author="Naoko__"
-              tag="Eventi"
-              date="2 MAGGIO"
-              src="/no_img.jpg"
+              title="Nuovo server Discord"
+              author="Shawn1865"
+              tag="Discord"
+              date="12 FEBBRAIO"
+              src="/news/discord.jpg"
             />
           </div>
         </section>
