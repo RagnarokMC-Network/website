@@ -60,7 +60,7 @@
 
       a {
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
       }
     }
@@ -116,5 +116,36 @@
   100% {
     width: 0%;
     height: 1%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .links_cnt ul li {
+    font-size: 14px;
+    margin: 3px;
+    padding: 3px 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    .logo_cnt {
+      img {
+        margin: auto 5px auto 0;
+      }
+    }
+
+    .links_cnt {
+      margin-left: 0;
+      margin-right: auto;
+
+      ul {
+        margin: 0 0 auto 0;
+      }
+    }
   }
 }

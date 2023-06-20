@@ -96,3 +96,27 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .rulesWrapper .tab {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .rulesWrapper .tab button {
+    font-size: 15px;
+    height: 60px;
+    padding: 0 7px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .rulesWrapper {
+    margin-top: 40px;
+  }
+
+  .rulesWrapper .content .active .title h4 {
+    font-size: 20px;
+  }
+}

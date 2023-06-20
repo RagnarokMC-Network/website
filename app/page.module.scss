@@ -118,3 +118,70 @@
     flex-wrap: wrap;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .cover p {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cover p {
+    max-width: 90%;
+    font-size: 16px;
+  }
+
+  .cover h1 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .cover .zap {
+    width: 170px;
+    height: 8px;
+  }
+
+  .cover button {
+    border-radius: 5px;
+    border-width: 3px;
+    font-size: 18px;
+    padding: 0;
+    width: 140px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .cover {
+    height: 95vh;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 95vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+      background-image: url("../public/background.webp");
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 95vh;
+      z-index: -1;
+      background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 1)
+      );
+    }
+  }
+}

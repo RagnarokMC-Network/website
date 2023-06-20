@@ -44,3 +44,29 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 200px;
+    height: 200px;
+
+    .propic {
+      width: calc(100%);
+      height: 100px;
+      margin: 0;
+      margin-top: 15px;
+
+      img {
+        width: 120px;
+      }
+    }
+
+    .info .username {
+      font-size: 16px;
+
+      .tag {
+        line-height: 35px;
+      }
+    }
+  }
+}

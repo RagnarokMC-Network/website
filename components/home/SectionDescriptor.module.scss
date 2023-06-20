@@ -38,3 +38,20 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .sectionDescriptor .description p {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sectionDescriptor .title h3 {
+    font-size: 22px;
+  }
+
+  .sectionDescriptor .description p {
+    width: 90%;
+    font-size: 15px;
+  }
+}

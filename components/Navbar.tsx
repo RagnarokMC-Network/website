@@ -52,7 +52,7 @@ const Navbar = () => {
   }, [pathname]);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <div className={styles.logo_cnt}>
         <Image
           src="/logo.webp"

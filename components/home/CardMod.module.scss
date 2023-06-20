@@ -45,3 +45,69 @@
 .cardAlt {
   margin-left: auto;
 }
+
+@media screen and (max-width: 1300px) {
+  .card,
+  .cardAlt {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .card,
+  .cardAlt {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card .propic,
+  .cardAlt .propic {
+    width: 250px;
+  }
+
+  .card .desc {
+    width: 100%;
+  }
+
+  .cardAlt .desc {
+    width: 100%;
+  }
+
+  .card .desc {
+    margin-right: auto;
+  }
+
+  .cardAlt .propic {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .card {
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+
+    .propic {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  .cardAlt {
+    height: 450px;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .desc {
+      margin-bottom: auto;
+    }
+
+    .propic {
+      height: 200px;
+      width: 100%;
+    }
+  }
+}

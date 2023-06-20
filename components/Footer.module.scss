@@ -99,3 +99,16 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .footer {
+    height: auto;
+  }
+
+  .infos {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+}
