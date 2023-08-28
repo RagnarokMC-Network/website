@@ -19,7 +19,7 @@ export default async function executeQuery({ query, values }:{query:string, valu
 }*/
 
 import mysql from 'serverless-mysql';
-const db = mysql({
+const dbPerms = mysql({
   config: {
     host: "66.45.252.244",
     database: "s63_luckperms",
@@ -27,8 +27,19 @@ const db = mysql({
     password: "!mre5XDx941u$kym"
   }
 });
-export default async function excuteQuery({ query, values }: {query: any, values: any}) {
+
+const dbAuth = mysql({
+  config: {
+    host: "66.45.252.244",
+    database: "s64_AuthMe",
+    user: "itadmin",
+    password: "!mre5XDx941u$kym"
+  }
+});
+
+export default async function excuteQuery({ query, values, dbs }: {query: any, values: any, dbs: string}) {
   try {
+    let db = dbs == "s64_AuthMe" ? dbAuth : dbPerms;
     const results = await db.query(query, values);
     await db.end();
     return results;

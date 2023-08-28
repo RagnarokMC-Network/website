@@ -11,6 +11,7 @@ const getUsers = async () => {
   const uPerms: any = await executeQuery({
     query: "SELECT * FROM luckperms_user_permissions",
     values: null,
+    dbs: "s63_luckperms",
   });
 
   const permissions = [
@@ -34,6 +35,7 @@ const getUsers = async () => {
   const users: any = await executeQuery({
     query: "SELECT * FROM luckperms_players",
     values: null,
+    dbs: "s63_luckperms",
   });
 
   if (!users) return [];

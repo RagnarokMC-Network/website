@@ -22,7 +22,7 @@ const Navbar = () => {
       title: "Votaci",
       desc: "",
     },
-    //{ path: "/account", title: "Account", desc: "" },
+    { path: "/account", title: "Account", desc: "" },
   ];
 
   useEffect(() => {
