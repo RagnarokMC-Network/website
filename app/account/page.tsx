@@ -23,7 +23,7 @@ const Profile = () => {
     setWorking(true);
 
     const data: any = await fetch(
-      `http://localhost:3000/account/autenticate?usr=${usr}&pwd=${pwd}`
+      `https://ragnarokmc.it/account/autenticate?usr=${usr}&pwd=${pwd}`
     );
 
     const json = await data.json();
@@ -45,7 +45,7 @@ const Profile = () => {
 
   const isLoggedIn = async (token: any, username: any) => {
     const data: any = await fetch(
-      `http://localhost:3000/account/isauthenticated?usr=${username}&tkn=${token}`
+      `https://ragnarokmc.it/account/isauthenticated?usr=${username}&tkn=${token}`
     );
 
     const json = await data.json();
