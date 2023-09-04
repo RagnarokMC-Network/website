@@ -1,5 +1,44 @@
 @import "@/components/_variables.module.scss";
 
+.account {
+  display: flex;
+  position: relative;
+  min-height: 300px;
+
+  .image {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: auto 20px auto auto;
+  }
+
+  .info {
+    margin: auto auto auto 20px;
+
+    .name {
+      color: white;
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .llogin {
+      color: white;
+      text-transform: capitalize;
+    }
+
+    .logout {
+      padding: 5px 10px;
+      font-size: 17px;
+      color: white;
+      background-color: #30a458;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
 .section {
   display: flex;
   flex-direction: column;
@@ -33,6 +72,45 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    .wrongpu {
+      color: red;
+    }
+  }
+}
+
+.spinnerWrapper {
+  display: flex;
+  min-height: 800px;
+
+  .loader {
+    margin: auto;
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 200px;
+  }
+
+  .loader:before,
+  .loader:after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
+  }
+  .loader:after {
+    box-shadow: 0 2px 0 #30a458 inset;
+    animation: rotate 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

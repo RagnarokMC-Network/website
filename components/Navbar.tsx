@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import jsCookie from "js-cookie";
 
 import styles from "./Navbar.module.scss";
 
@@ -11,6 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
   let [active, setActive] = useState("/");
   let [previous, setPrevious] = useState("/");
+  let [cookie, setCookie] = useState(false);
 
   let endpoints = [
     { path: "/", title: "Home", desc: "" },
@@ -27,6 +29,12 @@ const Navbar = () => {
 
   useEffect(() => {
     let local = window.localStorage.getItem("current")?.split(";")[0];
+
+    let token = jsCookie.get("lgntkn");
+    let username = jsCookie.get("usr");
+
+    if (token && username) setCookie(true);
+    else setCookie(false);
 
     if (local == pathname) {
       local = "/";
@@ -53,14 +61,26 @@ const Navbar = () => {
 
   return (
     <nav className={styles.nav}>
-      <div className={styles.logo_cnt}>
-        <Image
-          src="/logo.webp"
-          width={40}
-          height={40}
-          alt="Picture of the author"
-        />
-        <h3>RagnarokMC</h3>
+      <div className={styles.logo_wrapper}>
+        <div className={styles.logo_cnt}>
+          <Image
+            src="/logo.webp"
+            width={40}
+            height={40}
+            alt="Picture of the author"
+          />
+          <h3>RagnarokMC</h3>
+        </div>
+        <p>
+          Apertura 10/09 ore 15:00!
+          <br />
+          <Link
+            href="https://www.youtube.com/watch?v=M8v404e6D6k"
+            target="_blank"
+          >
+            TRAILER
+          </Link>
+        </p>
       </div>
       <div className={styles.links_cnt}>
         <ul>

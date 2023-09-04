@@ -1,21 +1,37 @@
 @import "./variables.module";
 
-.logo_cnt {
+.logo_wrapper {
   display: flex;
-  height: 100%;
+  flex-direction: column;
 
-  img {
-    margin: auto;
+  p {
+    color: white;
+    font-size: 16px;
+    margin: 5px 0 auto 0;
+    position: relative;
+
+    a {
+      color: white;
+      font-weight: bold;
+    }
   }
 
-  h3 {
-    color: white;
-    font-size: 24px;
-    margin: auto;
-    margin-left: 5px;
+  .logo_cnt {
+    margin: auto 0 0 0;
+    display: flex;
+
+    img {
+      margin: auto;
+    }
+
+    h3 {
+      color: white;
+      font-size: 24px;
+      margin: auto;
+      margin-left: 5px;
+    }
   }
 }
-
 .links_cnt {
   display: flex;
   height: 100%;

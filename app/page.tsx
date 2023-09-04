@@ -115,6 +115,22 @@ const Home = () => {
 
           <div className={styles.newsContainer}>
             <CardNews
+              title="Apertura network"
+              author="Naoko__"
+              tag="Minecraft"
+              date="04 SETTEMBRE"
+              src="/news/apertura.png"
+            />
+
+            <CardNews
+              title="Towny 2.0"
+              author="Naoko__"
+              tag="Minecraft"
+              date="04 SETTEMBRE"
+              src="/news/towny2.png"
+            />
+
+            <CardNews
               title="Nuovo aggiornamento!"
               author="Naoko__"
               tag="Minecraft"

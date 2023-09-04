@@ -9,17 +9,16 @@ const SALT_LENGTH = 16;
 const getHashFromDatabase = async (username: string) => {
 
   const uPerms: any = await executeQuery({
-    query: "SELECT * FROM authme WHERE realname = ?",
+    query: "SELECT * FROM nlogin WHERE last_name = ?",
     values: [username],
-    dbs: "s64_AuthMe",
+    dbs: "s64_nLogin",
   });
 
-  return uPerms.password
-  
+  if (uPerms[0] && Object.hasOwn(uPerms[0], 'password'))
+    return uPerms[0].password
 }
 
 const isValidPassword = (password: string, compare: string) => {
-  console.log(password, compare)
   let hash = crypto.createHash('sha256').update(password).digest('hex');
   let hashS = hash + compare.split("$")[2];
   let hashSH = crypto.createHash('sha256').update(hashS).digest('hex');
@@ -37,20 +36,50 @@ export async function GET(request: Request) {
   const username = searchParams.get('usr')
   const password = searchParams.get('pwd')
 
-  let response = false;
+  let response: any = {
+    response: false,
+    token: null,
+    user: null,
+  }
 
   if (username && password) {
-    console.log("A", password)
     let hash = await getHashFromDatabase(username);
-    console.log("B", hash)
     if (hash && isValidPassword(password, hash)) {
-      response = true;
+      let lgntoken: any = token();
+
+      const setToken: any = await executeQuery({
+        query: "UPDATE nlogin SET lgntkn = ? WHERE last_name = ?",
+        values: [lgntoken, username],
+        dbs: "s64_nLogin",
+      });
+
+      const user: any = await executeQuery({
+        query: "SELECT * FROM nlogin WHERE lgntkn = ? AND last_name = ?",
+        values: [lgntoken, username],
+        dbs: "s64_nLogin",
+      })
+
+      response.response = true;
+      response.token = lgntoken;
+      response.user = user[0];
     } else {
-      response = false;
+      response.response = false;
+      response.token = null;
+      response.user = null;
     }
   } else {
-    response = false;
+    response.response = false;
+    response.token = null;
+    response.user = null;
   }
  
   return NextResponse.json({ response })
 }
+
+const rand = () => {
+  return Math.random().toString(36).substr(2); // remove `0.`
+};
+
+const token = () => {
+  return rand() + rand(); // to make it longer
+};

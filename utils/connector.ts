@@ -31,15 +31,15 @@ const dbPerms = mysql({
 const dbAuth = mysql({
   config: {
     host: "66.45.252.244",
-    database: "s64_AuthMe",
-    user: "itadmin",
-    password: "!mre5XDx941u$kym"
+    database: "s64_nLogin",
+    user: "u64_litST8GZp9",
+    password: "xIkx!tFwaBiUkAf+IpKX5lsN"
   }
 });
 
 export default async function excuteQuery({ query, values, dbs }: {query: any, values: any, dbs: string}) {
   try {
-    let db = dbs == "s64_AuthMe" ? dbAuth : dbPerms;
+    let db = dbs == "s64_nLogin" ? dbAuth : dbPerms;
     const results = await db.query(query, values);
     await db.end();
     return results;
