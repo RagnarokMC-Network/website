@@ -36,6 +36,8 @@ export async function GET(request: Request) {
   const username = searchParams.get('usr')
   const password = searchParams.get('pwd')
 
+  let ok = true;
+
   let response: any = {
     response: false,
     token: null,
@@ -44,10 +46,11 @@ export async function GET(request: Request) {
 
   if (username && password) {
     let hash = await getHashFromDatabase(username);
+
     if (hash && isValidPassword(password, hash)) {
       let lgntoken: any = token();
 
-      const setToken: any = await executeQuery({
+      await executeQuery({
         query: "UPDATE nlogin SET lgntkn = ? WHERE last_name = ?",
         values: [lgntoken, username],
         dbs: "s64_nLogin",
@@ -59,21 +62,51 @@ export async function GET(request: Request) {
         dbs: "s64_nLogin",
       })
 
-      response.response = true;
-      response.token = lgntoken;
-      response.user = user[0];
+      if (user[0]) {
+        let uuid = user[0].unique_id;
+        uuid = [uuid.slice(0, 8), "-", uuid.slice(8)].join('');
+        uuid = [uuid.slice(0, 13), "-", uuid.slice(13)].join('');
+        uuid = [uuid.slice(0, 18), "-", uuid.slice(18)].join('');
+        uuid = [uuid.slice(0, 23), "-", uuid.slice(23)].join('');
+
+        const perms: any = await executeQuery({
+          query: "SELECT * FROM luckperms_players WHERE uuid = ?",
+          values: [uuid],
+          dbs: "s63_luckperms",
+        })
+
+        if (perms[0]) {
+
+          let userObj = {
+            ...user,
+            primary_group: perms[0].primary_group
+          }
+
+          response.response = true;
+          response.token = lgntoken;
+          response.user = userObj;
+
+        } else {
+          console.log("er4")
+          ok = false;
+        }
+      } else {
+        console.log("er3")
+        ok = false;
+      }
     } else {
-      response.response = false;
-      response.token = null;
-      response.user = null;
+      console.log("er2")
+      ok = false;
     }
   } else {
-    response.response = false;
-    response.token = null;
-    response.user = null;
+    console.log("er1")
+    ok = false;
   }
  
-  return NextResponse.json({ response })
+  if (ok)
+    return NextResponse.json({ response })
+  else
+    return NextResponse.json({})
 }
 
 const rand = () => {

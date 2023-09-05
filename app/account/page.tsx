@@ -17,17 +17,17 @@ const Profile = () => {
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState(false);
 
-  const router = useRouter();
-
   const login = async () => {
     setWorking(true);
 
     const data: any = await fetch(
-      `https://ragnarokmc.it/account/autenticate?usr=${usr}&pwd=${pwd}`
+      `http://localhost:3002/account/autenticate?usr=${usr}&pwd=${pwd}`
     );
 
     const json = await data.json();
 
+    // Authenticated
+    // TODO: Aggiungere utente al localstorage per evitare autenticazione volta per volta
     if (json.response.response == true) {
       jsCookie.set("lgntkn", json.response.token);
       jsCookie.set("usr", usr);
@@ -45,14 +45,15 @@ const Profile = () => {
 
   const isLoggedIn = async (token: any, username: any) => {
     const data: any = await fetch(
-      `https://ragnarokmc.it/account/isauthenticated?usr=${username}&tkn=${token}`
+      `http://localhost:3002/account/isauthenticated?usr=${username}&tkn=${token}`
     );
 
     const json = await data.json();
 
-    if (!json.response.user) {
+    if (!Object.hasOwn(json, "response")) {
       setWorking(false);
     } else {
+      console.log(json.response.user);
       setProfile(json.response.user);
       setWorking(false);
     }
@@ -102,6 +103,7 @@ const Profile = () => {
             </div>
             <div className={styles.info}>
               <p className={styles.name}>{profile?.last_name}</p>
+              <p className={styles.role}>{profile?.primary_group}</p>
               <p className={styles.llogin}>
                 {new Date(profile?.last_login).toLocaleDateString("it-IT", {
                   weekday: "long",

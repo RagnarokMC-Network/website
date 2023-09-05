@@ -37,9 +37,18 @@ const dbAuth = mysql({
   }
 });
 
+const dbNews = mysql({
+  config: {
+    host: "146.255.160.126",
+    database: "ragnarok",
+    user: "root",
+    password: "qq82ua54"
+  }
+});
+
 export default async function excuteQuery({ query, values, dbs }: {query: any, values: any, dbs: string}) {
   try {
-    let db = dbs == "s64_nLogin" ? dbAuth : dbPerms;
+    let db = dbs == "s64_nLogin" ? dbAuth : (dbs == "ragnarok" ? dbNews : dbPerms);
     const results = await db.query(query, values);
     await db.end();
     return results;
