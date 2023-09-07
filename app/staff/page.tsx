@@ -17,6 +17,7 @@ const getUsers = async () => {
   const permissions = [
     { id: "owner", color: "#bf0f0f" },
     { id: "admin", color: "#ebab34" },
+    { id: "developer", color: "#8c8c8c" },
     { id: "moderator+", color: "#349beb" },
     { id: "moderator", color: "#349beb" },
     { id: "builder", color: "#b90fbf" },
