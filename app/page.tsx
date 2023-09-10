@@ -22,7 +22,6 @@ const Home = () => {
       .then((json) => {
         if (json) {
           setPCount(json.players.online);
-          console.log(json);
         } else {
           setPCount(Math.floor(Math.random() * (60 - 15 + 1) + 15));
         }

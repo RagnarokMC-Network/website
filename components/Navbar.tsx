@@ -12,7 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
   let [active, setActive] = useState("/");
   let [previous, setPrevious] = useState("/");
-  let [cookie, setCookie] = useState(false);
+  const [profile, setProfile]: any = useState({});
 
   let endpoints = [
     { path: "/", title: "Home", desc: "" },
@@ -31,10 +31,25 @@ const Navbar = () => {
     let local = window.localStorage.getItem("current")?.split(";")[0];
 
     let token = jsCookie.get("lgntkn");
-    let username = jsCookie.get("usr");
+    let item = window.localStorage.getItem("profile");
 
-    if (token && username) setCookie(true);
-    else setCookie(false);
+    if (!token) {
+      window.localStorage.removeItem("profile");
+      setProfile(null);
+    } else if (!item) {
+      jsCookie.remove("lgntkn");
+      setProfile(null);
+    } else {
+      let json = JSON.parse(item);
+
+      if (json.username) {
+        setProfile(json);
+      } else {
+        setProfile(null);
+        jsCookie.remove("lgntkn");
+        window.localStorage.removeItem("profile");
+      }
+    }
 
     if (local == pathname) {
       local = "/";
@@ -84,11 +99,25 @@ const Navbar = () => {
       </div>
       <div className={styles.links_cnt}>
         <ul>
-          {endpoints.map((el, i) => (
-            <li key={i} className={`${active == el.path ? styles.active : ""}`}>
-              <Link href={el.path}>{el.title}</Link>
-            </li>
-          ))}
+          {endpoints.map((el, i) =>
+            profile && profile.username && el.path == "/accountt" ? (
+              <li>
+                <Image
+                  src={`https://mc-heads.net/head/${profile?.username}`}
+                  width={30}
+                  height={30}
+                  alt="Picture of the author"
+                />
+              </li>
+            ) : (
+              <li
+                key={i}
+                className={`${active == el.path ? styles.active : ""}`}
+              >
+                <Link href={el.path}>{el.title}</Link>
+              </li>
+            )
+          )}
         </ul>
       </div>
     </nav>
