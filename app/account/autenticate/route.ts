@@ -19,11 +19,8 @@ const getHashFromDatabase = async (username: string) => {
 
 const isValidPassword = (password: string, compare: string) => {
   let hash = crypto.createHash("sha256").update(password).digest("hex");
-  console.log(hash);
   let hashS = hash + compare.split("$")[3];
-  console.log(hashS, compare.split("$")[3]);
   let hashSH = crypto.createHash("sha256").update(hashS).digest("hex");
-  console.log(hashSH);
 
   if (hashSH === compare.split("$")[2]) {
     return true;

@@ -1,91 +1,73 @@
 "use client";
 
 import jsCookie from "js-cookie";
-import excuteQuery from "@/utils/connector";
 import { useEffect, useState } from "react";
-import Hero from "@/components/Hero";
 import { useRouter } from "next/navigation";
+import Hero from "@/components/Hero";
 import Image from "next/image";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 
 import styles from "./page.module.scss";
 
 const Profile = () => {
-  const [profile, setProfile]: any = useState(null);
-  const [working, setWorking]: any = useState(false);
+  const [profile, setProfile]: any = useState({});
   const [usr, setUsr] = useState("");
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState(false);
 
+  const router = useRouter();
+
   const login = async () => {
-    setWorking(true);
+    if (usr && pwd) {
+      const data: any = await fetch(
+        `http://localhost:3002/api/account/authenticate`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            username: usr,
+            password: pwd,
+          }),
+        }
+      );
 
-    const data: any = await fetch(
-      `http://localhost:3002/account/autenticate?usr=${usr}&pwd=${pwd}`
-    );
+      const response = await data.json();
 
-    const json = await data.json();
+      if (
+        (response && Object.hasOwn(response, "error"), response.error == false)
+      ) {
+        localStorage.setItem("profile", JSON.stringify(response.user));
+        jsCookie.set("lgntkn", response.token, { expires: 14 });
 
-    // Authenticated
-    // TODO: Aggiungere utente al localstorage per evitare autenticazione volta per volta
-    if (json.response.response == true) {
-      jsCookie.set("lgntkn", json.response.token);
-      jsCookie.set("usr", usr);
-      setErr(false);
-      setWorking(false);
+        setProfile(response.user);
+        setErr(false);
+      } else {
+        setErr(true);
+        logout();
+      }
     } else {
-      jsCookie.remove("lgntkn");
-      jsCookie.remove("usr");
       setErr(true);
-      setWorking(false);
-    }
-
-    isLoggedIn(json.response.token, usr);
-  };
-
-  const isLoggedIn = async (token: any, username: any) => {
-    const data: any = await fetch(
-      `http://localhost:3002/account/isauthenticated?usr=${username}&tkn=${token}`
-    );
-
-    const json = await data.json();
-
-    if (!Object.hasOwn(json, "response")) {
-      setWorking(false);
-    } else {
-      console.log(json.response.user);
-      setProfile(json.response.user);
-      setWorking(false);
+      logout();
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    localStorage.clear();
     jsCookie.remove("lgntkn");
-    jsCookie.remove("usr");
-    setPwd("null");
-    setUsr("null");
     setProfile(null);
-
-    setWorking(true);
-    isLoggedIn(null, null);
   };
 
   useEffect(() => {
+    let item = localStorage.getItem("profile");
+    let json = item !== null ? JSON.parse(item) : "";
     setErr(false);
-    setWorking(true);
-    let token = jsCookie.get("lgntkn");
-    let username = jsCookie.get("usr");
 
-    isLoggedIn(token, username);
+    if (json.username) setProfile(json);
+    else setProfile(null);
   }, []);
 
   return (
     <main>
-      {working ? (
-        <div className={styles.spinnerWrapper}>
-          <span className={styles.loader}></span>
-        </div>
-      ) : profile ? (
+      {profile ? (
         <>
           <Hero
             title="Profilo personale"
@@ -95,14 +77,14 @@ const Profile = () => {
           <div className={styles.account}>
             <div className={styles.image}>
               <Image
-                src={`https://mc-heads.net/head/${profile?.last_name}`}
+                src={`https://mc-heads.net/head/${profile?.username}`}
                 fill={true}
                 objectFit={"contain"}
                 alt=""
               />
             </div>
             <div className={styles.info}>
-              <p className={styles.name}>{profile?.last_name}</p>
+              <p className={styles.name}>{profile?.username}</p>
               <p className={styles.role}>{profile?.primary_group}</p>
               <p className={styles.llogin}>
                 {new Date(profile?.last_login).toLocaleDateString("it-IT", {

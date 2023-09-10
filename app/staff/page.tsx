@@ -33,8 +33,6 @@ const getUsers = async () => {
     return;
   });
 
-  console.log(permitted);
-
   const users: any = await executeQuery({
     query: "SELECT * FROM luckperms_players",
     values: null,
