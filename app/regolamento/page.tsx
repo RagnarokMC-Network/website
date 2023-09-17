@@ -291,10 +291,7 @@ const Regolamento = () => {
                         aggravanti.
                       </li>
                       <li>
-                        Non è possibile presentare reclami per i singoli warn o
-                        per sanzioni di tipo ban e mute derivate dai warn stessi
-                        (per esempio dopo il terzo warn c&apos;è il ban
-                        temporaneo).
+Non è possibile presentare reclami per i singoli warn o per sanzioni di tipo ban e mute derivate dai warn stessi (per esempio dopo il terzo warn c'è il ban temporaneo), salvo nell’immediatezza della sanzione (24 ore) e con valide prove che esso sia ingiusto.
                       </li>
                     </ul>
                   </li>
@@ -687,6 +684,9 @@ const Regolamento = () => {
                         3.1 e dei suoi sottopunti può portare alla ricezione un
                         warn.
                       </li>
+                      <li>
+                        Creare o continuare ad alimentare una situazione di flame in chat pubblica con provocazioni o ironia eccessiva comporta un mute da 30 minuti a 2 giorni, con eventuale warn nei casi più gravi.
+                      </li>
                     </ul>
                   </li>
                   <li>
@@ -742,7 +742,14 @@ const Regolamento = () => {
                         Fare teaming dove non è previsto è vietato e
                         l&apos;infrazione comporta: un ban di 1 giorno.
                       </li>
+                      <li>
+                        Per “Spawn Kill” si intende una serie di kill continue e ripetute vicino ad un punto di rinascita del giocatore “vittima” senza dare ad esso la possibilità di scappare.
+                      </li>
+                      <li>
+                        Per “Tp kill” si intende farsi mandare una richiesta tpa o mandare un tpa con lo scopo di killare il giocatore nell’immediatezza o pochi secondi dopo.
+                      </li>
                     </ul>
+                    
                   </li>
                   <li>
                     è vietato costruire strutture offensive, nudiste o
