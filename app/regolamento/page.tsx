@@ -987,61 +987,45 @@ const Regolamento = () => {
                     sospensione temporanea di 1 giorno.
                   </li>
                   <li>
-                    Non è consentito piazzare blocchi di qualsiasi tipo a
-                    distanza di 2 chunk da una città in cui non si è
-                    partecipanti, l&apos;infrazione comporta un warn e rimozione
-                    immediata dei blocchi piazzati.
+                    Truffare i giocatori è consentito e non comporta alcuna infrazione ma solo se esse riguardano il gameplay e non casi più gravi.
                     <ul>
                       <li>
-                        Il punto 7.3 non comporta nessuna sanzione ma solamente
-                        se le due città vicine sono d&apos;accordo sul piazzare
-                        blocchi vicini ai propri chunk.
+                        I giocatori per evitare la truffa si impegnano ad utilizzare i sistemi forniti dal server come lo /ah e /trade.
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Truffare i player (scam) non è consentito, è prevista
-                    un&apos;aggravante se la truffa è stata resa possibile
-                    tramite i comandi /ah e /trade, l&apos;infrazione comporta
-                    una sospensione temporanea di 6 ore fino a 5 giorni e
-                    ripristino dei vantaggi ottenuti.
+                    Chiunque fornisce informazioni non veritiere ad un'utente inesperto per trollarlo e/o a non aiutarlo a progredire verrà sanzionato con un mute da 15 a 45 minuti e un possibile warn.
                     <ul>
                       <li>
-                        Un player che non utilizza i sistemi forniti dal gioco,
-                        come lo /trade e lo /ah può essere sanzionato con un
-                        warn per non avere utilizzato le risorse a sua
-                        disposizione per evitare una possibile truffa
+                        Un giocatore inesperto è un giocatore con un tempo di gioco effettivo inferiore alle 24 ore.
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Chiunque fornisce informazioni non veritiere ad
-                    un&apos;utente inesperto per trollarlo e/o a non aiutarlo a
-                    progredire verrà sanzionato con un warn e con un possibile
-                    mute da 15 a 45 minuti.
+                    Un'utente che imposta dei permessi sulla town ad un altro giocatore si assume tutta la responsabilità, in caso di grief, mob uccisi ecc.
+                  </li>
+                  <li>
+                    Sono vietate qualsiasi tipo di end farm, l'infrazione comporta un warn e rimozione completa della farm.
+                  </li>
+                  <li>
+                    Rovinare appositamente e in modo abbastanza significativo paesaggi nelle vicinanze di town comporta un warn.
                     <ul>
                       <li>
-                        Un giocatore inesperto è un giocatore con un tempo di
-                        gioco effettivo inferiore alle 24 ore
+                        la decisione è a completa discrezione dello staff.
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Griffare o uccidere mob di altri giocatori non è consentito
-                    vicino a 2 chunk da una town, l&apos;infrazione comporta un
-                    warn fino ad arrivare ad una sospensione temporanea
-                    dell&apos;account di gioco per 5 giorni.
+                    Utilizzare mini-mappe di qualsiasi genere tranne quella fornita dal server in occasione di eventi organizzati dallo staff è sanzionabile con un ban di 1 giorno e rimozione di eventuali premi ottenuti.
                     <ul>
                       <li>
-                        Un&apos;utente che imposta dei permessi sulla town ad un
-                        altro giocatore si assume tutta la responsabilità, in
-                        caso di grief , mob uccisi ecc
+                        Lo staff, a sua totale discrezione può applicare sanzioni più gravi presenti nella sezione 3.
+                      </li>
+                      <li>
+                        Avere in questo caso una mini-mappa installata sul PC anche se non la si stava usando, in caso di controllo cheats è sanzionabile con un ban di 1 giorno.
                       </li>
                     </ul>
-                  </li>
-                  <li>
-                    Sono vietate qualsiasi tipo di end farm, l&apos;infrazione
-                    comporta un warn e rimozione completa della farm.
                   </li>
                 </ul>
               </div>
