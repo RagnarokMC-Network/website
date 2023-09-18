@@ -1,69 +1,30 @@
+"use client";
+
 import executeQuery from "@/utils/connector";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import Hero from "@/components/Hero";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import CardStaff from "@/components/staff/CardStaff";
 import styles from "./page.module.scss";
 
-const getUsers = async () => {
-  const uPerms: any = await executeQuery({
-    query: "SELECT * FROM luckperms_user_permissions",
-    values: null,
-    dbs: "s63_luckperms",
-  });
-
-  const permissions = [
-    { id: "owner", color: "#bf0f0f" },
-    { id: "admin", color: "#ebab34" },
-    { id: "developer", color: "#8c8c8c" },
-    { id: "moderator+", color: "#349beb" },
-    { id: "moderator", color: "#349beb" },
-    { id: "builder", color: "#b90fbf" },
-    { id: "helper+", color: "#2ca122" },
-    { id: "helper", color: "#2ca122" },
-  ];
-
-  const permitted = uPerms.filter((el: any) => {
-    if (permissions.some((al) => el.permission.includes(al.id))) {
-      return el;
-    }
-
-    return;
-  });
-
-  const users: any = await executeQuery({
-    query: "SELECT * FROM luckperms_players",
-    values: null,
-    dbs: "s63_luckperms",
-  });
-
-  if (!users) return [];
-
-  const permNames = users.filter((el: any) => {
-    if (permitted.some((al: any) => al.uuid == el.uuid)) {
-      return el;
-    }
-  });
-
-  let resColorless = permNames.sort(
-    (a: any, b: any) =>
-      permissions.findIndex((el) => el.id == a.primary_group) -
-      permissions.findIndex((el) => el.id == b.primary_group)
-  );
-
-  let res = resColorless.map((el: any) => {
-    // @ts-ignore
-    el.color = permissions.find((al) => al.id == el.primary_group)?.color;
-    return el;
-  });
-
-  return res;
-};
-
 const Staff = async () => {
-  const users: any[] = await getUsers();
+  let [users, setUsers]: any = useState(null);
+
+  const getUsers = async () => {
+    let usr = await fetch(`http://localhost:3002/api/staff`);
+    let json = await usr.json();
+
+    console.log(json);
+
+    setUsers(json);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <main>
@@ -80,11 +41,11 @@ const Staff = async () => {
         />
 
         <div className={styles.staffWrapper}>
-          {users.map((user, i, arr) =>
+          {users?.map((user: any, i: any, arr: any) =>
             i < arr.length - 1 &&
             user.primary_group == arr[i + 1].primary_group ? (
               <CardStaff
-                key={i}
+                key={user.username}
                 username={user.username}
                 uuid={user.uuid}
                 tag={user.primary_group}
@@ -93,7 +54,7 @@ const Staff = async () => {
             ) : (
               <>
                 <CardStaff
-                  key={i}
+                  key={user.username}
                   username={user.username}
                   uuid={user.uuid}
                   tag={user.primary_group}
