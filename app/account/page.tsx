@@ -9,11 +9,14 @@ import SectionDescriptor from "@/components/home/SectionDescriptor";
 
 import styles from "./page.module.scss";
 
+import { useProfileStore } from "@/utils/useProfileStore";
+
 const Profile = () => {
-  const [profile, setProfile]: any = useState({});
   const [usr, setUsr] = useState("");
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState(false);
+  const { setGProfile }: any = useProfileStore();
+  const profile = useProfileStore((state: any) => state.profile);
 
   const router = useRouter();
 
@@ -38,7 +41,7 @@ const Profile = () => {
         localStorage.setItem("profile", JSON.stringify(response.user));
         jsCookie.set("lgntkn", response.token, { expires: 14 });
 
-        setProfile(response.user);
+        setGProfile(response.user);
         setErr(false);
       } else {
         setErr(true);
@@ -53,7 +56,7 @@ const Profile = () => {
   const logout = async () => {
     localStorage.clear();
     jsCookie.remove("lgntkn");
-    setProfile(null);
+    setGProfile(null);
   };
 
   useEffect(() => {
@@ -61,8 +64,8 @@ const Profile = () => {
     let json = item !== null ? JSON.parse(item) : "";
     setErr(false);
 
-    if (json.username) setProfile(json);
-    else setProfile(null);
+    if (json.username) setGProfile(json);
+    else setGProfile(null);
   }, []);
 
   return (

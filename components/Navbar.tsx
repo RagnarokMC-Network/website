@@ -8,11 +8,14 @@ import jsCookie from "js-cookie";
 
 import styles from "./Navbar.module.scss";
 
+import { useProfileStore } from "@/utils/useProfileStore";
+
 const Navbar = () => {
   const pathname = usePathname();
   let [active, setActive] = useState("/");
   let [previous, setPrevious] = useState("/");
-  const [profile, setProfile]: any = useState({});
+  const { setGProfile }: any = useProfileStore();
+  const profile = useProfileStore((state: any) => state.profile);
 
   let endpoints = [
     { path: "/", title: "Home", desc: "" },
@@ -35,17 +38,17 @@ const Navbar = () => {
 
     if (!token) {
       window.localStorage.removeItem("profile");
-      setProfile(null);
+      setGProfile(null);
     } else if (!item) {
       jsCookie.remove("lgntkn");
-      setProfile(null);
+      setGProfile(null);
     } else {
       let json = JSON.parse(item);
 
       if (json.username) {
-        setProfile(json);
+        setGProfile(json);
       } else {
-        setProfile(null);
+        setGProfile(null);
         jsCookie.remove("lgntkn");
         window.localStorage.removeItem("profile");
       }
@@ -99,15 +102,18 @@ const Navbar = () => {
       </div>
       <div className={styles.links_cnt}>
         <ul>
-          {endpoints.map((el, i) =>
-            profile && profile.username && el.path == "/accountt" ? (
-              <li>
-                <Image
-                  src={`https://mc-heads.net/head/${profile?.username}`}
-                  width={30}
-                  height={30}
-                  alt="Picture of the author"
-                />
+          {endpoints.map((el, i) => {
+            return profile && profile.username && el.path == "/account" ? (
+              <li className={styles.profile}>
+                <Link href={el.path}>
+                  <span>{profile?.username}</span>
+                  <Image
+                    src={`https://mc-heads.net/head/${profile?.username}`}
+                    width={44}
+                    height={44}
+                    alt="Picture of the author"
+                  />
+                </Link>
               </li>
             ) : (
               <li
@@ -116,8 +122,8 @@ const Navbar = () => {
               >
                 <Link href={el.path}>{el.title}</Link>
               </li>
-            )
-          )}
+            );
+          })}
         </ul>
       </div>
     </nav>

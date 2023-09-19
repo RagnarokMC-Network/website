@@ -42,9 +42,10 @@
     margin: auto;
     list-style: none;
 
-    li {
+    li:not(.profile) {
       margin: 5px;
       padding: 5px 10px;
+      max-height: 29px;
       transition: 0.15s;
       position: relative;
       cursor: pointer;
@@ -69,7 +70,7 @@
         animation: linkFiller-in 0.25s forwards;
       }
 
-      &:hover {
+      &:hover a {
         transition: 0.15s;
         color: rgba(255, 255, 255, 1);
       }
@@ -78,6 +79,35 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
+        transition: 0.15s;
+      }
+    }
+
+    .profile {
+      margin: 5px;
+      background-color: $COLOR_PRIMARY;
+      border-radius: 6px;
+      height: 30px;
+      cursor: pointer;
+
+      &:hover span {
+        transition: 0.15s;
+        color: white;
+      }
+
+      a {
+        padding: 0 0 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+
+        span {
+          margin-right: 5px;
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          transition: 0.15s;
+        }
       }
     }
 
@@ -95,7 +125,7 @@
       }
 
       a {
-        color: rgba(255, 255, 255, 1);
+        color: rgb(255, 255, 255) !important;
       }
     }
   }
