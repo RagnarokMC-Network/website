@@ -29,19 +29,19 @@ const Home = () => {
         }
       });
 
-    /*fetch("https://ragnarokmc.it/api/news/posts")
-      .then((data) => data.json())
-      .then((json) => {
-        console.log(json);
-        setPosts(json);
-      });*/
-
-    fetch("http://localhost:3002/api/news/posts")
+    fetch("https://ragnarokmc.it/api/news/posts")
       .then((data) => data.json())
       .then((json) => {
         console.log(json);
         setPosts(json);
       });
+
+    /* fetch("http://localhost:3002/api/news/posts")
+      .then((data) => data.json())
+      .then((json) => {
+        console.log(json);
+        setPosts(json);
+      });*/
   }, []);
 
   const scroll = () => {
