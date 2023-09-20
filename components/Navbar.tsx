@@ -61,7 +61,7 @@ const Navbar = () => {
 
     let ePrevious = endpoints.find((p) => {
       if (p.path == local) return p;
-      else {
+      else if (local) {
         let argsPath = local.split("/");
         let argsEl = p.path.split("/");
 
@@ -80,7 +80,7 @@ const Navbar = () => {
 
     let eCurrent = endpoints.find((p) => {
       if (p.path == pathname) return p;
-      else {
+      else if (pathname) {
         let argsPath = pathname.split("/");
         let argsEl = p.path.split("/");
 
