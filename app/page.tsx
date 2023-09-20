@@ -36,7 +36,7 @@ const Home = () => {
         setPosts(json);
       });
 
-    /* fetch("http://localhost:3002/api/news/posts")
+    /*fetch("http://localhost:3002/api/news/posts")
       .then((data) => data.json())
       .then((json) => {
         console.log(json);
@@ -131,7 +131,7 @@ const Home = () => {
           <div className={styles.newsContainer}>
             {posts.map((el: Post, i: any) => {
               if (i > 5) return;
-              return <CardNews post={el} />;
+              return <CardNews key={i} post={el} />;
             })}
           </div>
         </section>

@@ -43,7 +43,7 @@ const CardNews = (props: any) => {
             <FiArrowRight />
           </div>
         ) : (
-          <></>
+          <div></div>
         )}
       </div>
     </div>
