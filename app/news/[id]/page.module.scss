@@ -1,0 +1,30 @@
+.section {
+  display: flex;
+  justify-content: center;
+  min-height: 480px;
+
+  .wrapper {
+    width: 784px;
+    margin: 120px 24px;
+    color: white;
+    line-height: 32px;
+    font-size: 20px;
+    letter-spacing: -0.003em;
+    font-family: 'source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif';
+
+    .image {
+      width: 680;
+      height: 382px;
+      position: relative;
+
+      img {
+        box-shadow: 5px 5px 15px #0d0f10, -5px -5px 15px #353b42;
+        border-radius: 15px;
+      }
+    }
+
+    .text {
+      margin-top: 4em;
+    }
+  }
+}

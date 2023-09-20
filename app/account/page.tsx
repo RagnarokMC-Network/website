@@ -23,7 +23,7 @@ const Profile = () => {
   const login = async () => {
     if (usr && pwd) {
       const data: any = await fetch(
-        `http://localhost:3002/api/account/authenticate`,
+        `https://ragnarokmc.it/api/account/authenticate`,
         {
           method: "POST",
           body: JSON.stringify({

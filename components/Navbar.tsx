@@ -28,10 +28,11 @@ const Navbar = () => {
       desc: "",
     },
     { path: "/account", title: "Account", desc: "" },
+    { path: "/news/*", title: "News", desc: "" },
   ];
 
   useEffect(() => {
-    let local = window.localStorage.getItem("current")?.split(";")[0];
+    let local: any = window.localStorage.getItem("current")?.split(";")[0];
 
     let token = jsCookie.get("lgntkn");
     let item = window.localStorage.getItem("profile");
@@ -58,13 +59,39 @@ const Navbar = () => {
       local = "/";
     }
 
-    let ePrevious = endpoints.find((p) => p.path == local);
+    let ePrevious = endpoints.find((p) => {
+      if (p.path == local) return p;
+      else {
+        let argsPath = local.split("/");
+        let argsEl = p.path.split("/");
+
+        if (!argsEl.includes("*")) return;
+        else if (argsPath[1] == argsEl[1]) {
+          let el = p;
+          el.path = local;
+          return el;
+        }
+      }
+    });
     window.localStorage.setItem(
       "previous",
       `${ePrevious?.path};${ePrevious?.title};${ePrevious?.desc}`
     );
 
-    let eCurrent = endpoints.find((p) => p.path == pathname);
+    let eCurrent = endpoints.find((p) => {
+      if (p.path == pathname) return p;
+      else {
+        let argsPath = pathname.split("/");
+        let argsEl = p.path.split("/");
+
+        if (!argsEl.includes("*")) return;
+        else if (argsPath[1] == argsEl[1]) {
+          let el = p;
+          el.path = pathname;
+          return el;
+        }
+      }
+    });
     window.localStorage.setItem(
       "current",
       `${eCurrent?.path};${eCurrent?.title};${eCurrent?.desc}`
@@ -116,12 +143,14 @@ const Navbar = () => {
                 </Link>
               </li>
             ) : (
-              <li
-                key={i}
-                className={`${active == el.path ? styles.active : ""}`}
-              >
-                <Link href={el.path}>{el.title}</Link>
-              </li>
+              !el.path.includes("*") && (
+                <li
+                  key={i}
+                  className={`${active == el.path ? styles.active : ""}`}
+                >
+                  <Link href={el.path}>{el.title}</Link>
+                </li>
+              )
             );
           })}
         </ul>

@@ -18,14 +18,14 @@ export default async function executeQuery({ query, values }:{query:string, valu
   }
 }*/
 
-import mysql from 'serverless-mysql';
+import mysql from "serverless-mysql";
 const dbPerms = mysql({
   config: {
     host: "66.45.252.244",
     database: "s63_luckperms",
     user: "itadmin",
-    password: "!mre5XDx941u$kym"
-  }
+    password: "!mre5XDx941u$kym",
+  },
 });
 
 const dbAuth = mysql({
@@ -33,22 +33,31 @@ const dbAuth = mysql({
     host: "66.45.252.244",
     database: "s64_nLogin",
     user: "u64_litST8GZp9",
-    password: "xIkx!tFwaBiUkAf+IpKX5lsN"
-  }
+    password: "xIkx!tFwaBiUkAf+IpKX5lsN",
+  },
 });
 
 const dbNews = mysql({
   config: {
-    host: "146.255.160.126",
+    host: "92.246.122.192",
     database: "ragnarok",
-    user: "root",
-    password: "qq82ua54"
-  }
+    user: "admin",
+    password: "Iq6b6zriPIe%y3fS",
+  },
 });
 
-export default async function excuteQuery({ query, values, dbs }: {query: any, values: any, dbs: string}) {
+export default async function excuteQuery({
+  query,
+  values,
+  dbs,
+}: {
+  query: any;
+  values: any;
+  dbs: string;
+}) {
   try {
-    let db = dbs == "s64_nLogin" ? dbAuth : (dbs == "ragnarok" ? dbNews : dbPerms);
+    let db =
+      dbs == "s64_nLogin" ? dbAuth : dbs == "ragnarok" ? dbNews : dbPerms;
     const results = await db.query(query, values);
     await db.end();
     return results;

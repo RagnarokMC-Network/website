@@ -9,12 +9,14 @@ import SectionDescriptor from "@/components/home/SectionDescriptor";
 import CardNews from "@/components/home/CardNews";
 import CardMod from "@/components/home/CardMod";
 
-type NotificationType = "success" | "info" | "warning" | "error";
-
 import styles from "./page.module.scss";
+
+import type { Post } from "@/utils/types";
+type NotificationType = "success" | "info" | "warning" | "error";
 
 const Home = () => {
   const [pCount, setPCount] = useState(0);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     fetch("https://api.mcsrvstat.us/2/ragnarokmc.it")
@@ -25,6 +27,20 @@ const Home = () => {
         } else {
           setPCount(Math.floor(Math.random() * (60 - 15 + 1) + 15));
         }
+      });
+
+    /*fetch("https://ragnarokmc.it/api/news/posts")
+      .then((data) => data.json())
+      .then((json) => {
+        console.log(json);
+        setPosts(json);
+      });*/
+
+    fetch("http://localhost:3002/api/news/posts")
+      .then((data) => data.json())
+      .then((json) => {
+        console.log(json);
+        setPosts(json);
       });
   }, []);
 
@@ -113,45 +129,10 @@ const Home = () => {
           />
 
           <div className={styles.newsContainer}>
-            <CardNews
-              title="Apertura network"
-              author="Naoko__"
-              tag="Minecraft"
-              date="04 SETTEMBRE"
-              src="/news/apertura.png"
-            />
-
-            <CardNews
-              title="Towny 2.0"
-              author="Naoko__"
-              tag="Minecraft"
-              date="04 SETTEMBRE"
-              src="/news/towny2.png"
-            />
-
-            <CardNews
-              title="Nuovo aggiornamento!"
-              author="Naoko__"
-              tag="Minecraft"
-              date="2 MAGGIO"
-              src="/news/update.jpg"
-            />
-
-            <CardNews
-              title="Evento PVP"
-              author="Fabio10elode"
-              tag="Minecraft"
-              date="24 MARZO"
-              src="/news/pvp.jpg"
-            />
-
-            <CardNews
-              title="Nuovo server Discord"
-              author="Shawn1865"
-              tag="Discord"
-              date="12 FEBBRAIO"
-              src="/news/discord.jpg"
-            />
+            {posts.map((el: Post, i: any) => {
+              if (i > 5) return;
+              return <CardNews post={el} />;
+            })}
           </div>
         </section>
       </main>
