@@ -1,15 +1,18 @@
 "use client";
 
 import jsCookie from "js-cookie";
+import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Hero from "@/components/Hero";
-import Image from "next/image";
-import SectionDescriptor from "@/components/home/SectionDescriptor";
 
 import styles from "./page.module.scss";
 
 import { useProfileStore } from "@/utils/useProfileStore";
+
+import Hero from "@/components/Hero";
+import SectionDescriptor from "@/components/home/SectionDescriptor";
+import Settings from "@/components/account/Settings";
 
 const Profile = () => {
   const [usr, setUsr] = useState("");
@@ -102,6 +105,11 @@ const Profile = () => {
               </button>
             </div>
           </div>
+          {/*
+          <div className={styles.wrapper}>
+            <Settings />
+          </div>
+              */}
         </>
       ) : (
         <>

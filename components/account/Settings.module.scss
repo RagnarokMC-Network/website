@@ -1,0 +1,10 @@
+.card {
+  margin: 40px 280px 120px 280px;
+  box-shadow: 5px 5px 15px #0d0f10, -5px -5px 15px #353b42;
+  border-radius: 10px;
+  overflow: hidden;
+
+  * {
+    color: white !important;
+  }
+}

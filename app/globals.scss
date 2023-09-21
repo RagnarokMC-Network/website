@@ -81,3 +81,20 @@ body {
     }
   }
 }
+
+.ant-tabs-tab {
+  .ant-tabs-tab-btn {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
+.ant-tabs-tab-active {
+  background-color: $COLOR_PRIMARY !important;
+}
+
+.ant-tabs-content-holder {
+  width: 100% !important;
+  min-height: 420px !important;
+  padding-top: 15px !important;
+}

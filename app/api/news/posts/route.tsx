@@ -33,3 +33,23 @@ export async function GET(request: Request) {
       });
   }
 }
+
+export async function POST(req: Request) {
+  const data = await req.json();
+
+  let creation_date = data.creation_date;
+  let title = data.title;
+  let body = data.body;
+  let author = data.author;
+  let tag = data.tag;
+  let image = data.image;
+
+  await executeQuery({
+    query:
+      "INSERT INTO annunci (creation_date, title, body, author, tag, images) VALUES (?, ?, ?, ?, ?, ?)",
+    values: [creation_date, title, body, author, tag, image],
+    dbs: "ragnarok",
+  });
+
+  return NextResponse.json({});
+}
