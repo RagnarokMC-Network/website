@@ -13,6 +13,7 @@ import { useProfileStore } from "@/utils/useProfileStore";
 import Hero from "@/components/Hero";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import Settings from "@/components/account/Settings";
+import utils from "@/utils/utils";
 
 const Profile = () => {
   const [usr, setUsr] = useState("");
@@ -26,7 +27,7 @@ const Profile = () => {
   const login = async () => {
     if (usr && pwd) {
       const data: any = await fetch(
-        `https://ragnarokmc.it/api/account/authenticate`,
+        `${utils.endpoint}/api/account/authenticate`,
         {
           method: "POST",
           body: JSON.stringify({

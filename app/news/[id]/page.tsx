@@ -4,6 +4,7 @@ import executeQuery from "@/utils/connector";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
+import utils from "@/utils/utils";
 
 import styles from "./page.module.scss";
 
@@ -12,7 +13,7 @@ const Post = ({ params }: { params: { id: number } }) => {
 
   useEffect(() => {
     if (params.id) {
-      fetch(`https://ragnarokmc.it/api/news/posts?postId=${params.id}`)
+      fetch(`${utils.endpoint}/api/news/posts?postId=${params.id}`)
         .then((res) => res.json())
         .then((json) => {
           setPost(json);

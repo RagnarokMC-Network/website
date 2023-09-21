@@ -19,7 +19,6 @@ const CreateNews = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(utils.isStaffer());
     if (!utils.isStaffer()) {
       router.push("/");
     }
@@ -47,7 +46,7 @@ const CreateNews = () => {
 
     if (!profile.username) return;
 
-    fetch("https://ragnarokmc.it/api/news/posts", {
+    fetch(`${utils.endpoint}/api/news/posts`, {
       method: "POST",
       body: JSON.stringify({
         creation_date: dateStr,

@@ -6,12 +6,13 @@ import Hero from "@/components/Hero";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import CardStaff from "@/components/staff/CardStaff";
 import styles from "./page.module.scss";
+import utils from "@/utils/utils";
 
 const Staff = () => {
   let [users, setUsers]: any = useState([]);
 
   useEffect(() => {
-    fetch(`https://ragnarokmc.it/api/staff`)
+    fetch(`${utils.endpoint}/api/staff`)
       .then((res) => res.json())
       .then((json) => {
         setUsers(json);

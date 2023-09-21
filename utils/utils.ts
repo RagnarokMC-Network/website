@@ -1,3 +1,4 @@
+import getConfig from "next/config";
 import type { Profile } from "./types";
 
 const permissions = [
@@ -28,4 +29,5 @@ export default {
       return false;
     }
   },
+  endpoint: "dev" == "dev" ? "http://localhost:3002" : "https://ragnarokmc.it",
 };

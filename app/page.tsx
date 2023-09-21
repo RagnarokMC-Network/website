@@ -8,6 +8,7 @@ import { notification, Space } from "antd";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import CardNews from "@/components/home/CardNews";
 import CardMod from "@/components/home/CardMod";
+import utils from "@/utils/utils";
 
 import styles from "./page.module.scss";
 
@@ -29,20 +30,12 @@ const Home = () => {
         }
       });
 
-    fetch("http://localhost:3002/api/news/posts")
+    fetch(`${utils.endpoint}/api/news/posts`)
       .then((data) => data.json())
       .then((json) => {
-        console.log(json);
         let sorted = json.sort(Compare);
-        setPosts(json);
+        setPosts(sorted);
       });
-
-    /*fetch("http://localhost:3002/api/news/posts")
-      .then((data) => data.json())
-      .then((json) => {
-        console.log(json);
-        setPosts(json);
-      });*/
   }, []);
 
   const Compare = (a: any, b: any) => {
