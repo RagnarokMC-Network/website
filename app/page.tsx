@@ -29,11 +29,11 @@ const Home = () => {
         }
       });
 
-    fetch("https://ragnarokmc.it/api/news/posts")
+    fetch("http://localhost:3002/api/news/posts")
       .then((data) => data.json())
       .then((json) => {
         console.log(json);
-        json.sort((a: any, b: any) => a.annunci_id - b.annunci_id);
+        let sorted = json.sort(Compare);
         setPosts(json);
       });
 
@@ -44,6 +44,28 @@ const Home = () => {
         setPosts(json);
       });*/
   }, []);
+
+  const Compare = (a: any, b: any) => {
+    if (
+      a.last_modification_date
+        ? a.last_modification_date
+        : a.creation_date < b.last_modification_date
+        ? b.last_modification_date
+        : b.creation_date
+    ) {
+      return -1;
+    }
+    if (
+      a.last_modification_date
+        ? a.last_modification_date
+        : a.creation_date > b.last_modification_date
+        ? b.last_modification_date
+        : b.creation_date
+    ) {
+      return 1;
+    }
+    return 0;
+  };
 
   const scroll = () => {
     const element = document.getElementById("section-1");

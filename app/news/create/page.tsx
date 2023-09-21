@@ -41,6 +41,12 @@ const CreateNews = () => {
       ":" +
       date.getUTCSeconds();
 
+    if (!titolo) return;
+
+    if (!contenuto) return;
+
+    if (!profile.username) return;
+
     fetch("https://ragnarokmc.it/api/news/posts", {
       method: "POST",
       body: JSON.stringify({
