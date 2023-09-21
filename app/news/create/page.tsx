@@ -8,13 +8,15 @@ import Hero from "@/components/Hero";
 
 import styles from "./page.module.scss";
 
+import type { UserProfile } from "@/utils/types";
+
 const CreateNews = () => {
   const [immagine, setImmagine] = useState(null);
   const [titolo, setTitolo] = useState("");
   const [contenuto, setContenuto] = useState("");
 
   const { setGProfile }: any = useProfileStore();
-  const profile = useProfileStore((state: any) => state.profile);
+  const profile: UserProfile = useProfileStore((state: any) => state.profile);
 
   const router = useRouter();
 
@@ -61,7 +63,7 @@ const CreateNews = () => {
     router.push("/");
   };
 
-  const convertBase64 = (file: any) => {
+  const convertBase64 = (file: Blob) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);

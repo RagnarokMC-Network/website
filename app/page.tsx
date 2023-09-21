@@ -1,10 +1,8 @@
 "use client";
-
 import Image from "next/image";
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { notification } from "antd";
 
-import { notification, Space } from "antd";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import CardNews from "@/components/home/CardNews";
 import CardMod from "@/components/home/CardMod";
@@ -12,12 +10,11 @@ import utils from "@/utils/utils";
 
 import styles from "./page.module.scss";
 
-import type { Post } from "@/utils/types";
-type NotificationType = "success" | "info" | "warning" | "error";
+import type { NewsPost, NotificationType } from "@/utils/types";
 
 const Home = () => {
   const [pCount, setPCount] = useState(0);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<NewsPost[]>();
 
   useEffect(() => {
     fetch("https://api.mcsrvstat.us/2/ragnarokmc.it")
@@ -38,7 +35,7 @@ const Home = () => {
       });
   }, []);
 
-  const Compare = (a: any, b: any) => {
+  const Compare = (a: NewsPost, b: NewsPost) => {
     if (
       a.last_modification_date
         ? a.last_modification_date
@@ -145,7 +142,7 @@ const Home = () => {
           />
 
           <div className={styles.newsContainer}>
-            {posts.map((el: Post, i: any) => {
+            {posts?.map((el: NewsPost, i: number) => {
               if (i > 5) return;
               return <CardNews key={i} post={el} />;
             })}

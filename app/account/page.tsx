@@ -15,12 +15,14 @@ import SectionDescriptor from "@/components/home/SectionDescriptor";
 import Settings from "@/components/account/Settings";
 import utils from "@/utils/utils";
 
+import type { UserProfile } from "@/utils/types";
+
 const Profile = () => {
   const [usr, setUsr] = useState("");
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState(false);
   const { setGProfile }: any = useProfileStore();
-  const profile = useProfileStore((state: any) => state.profile);
+  const profile: UserProfile = useProfileStore((state: any) => state.profile);
 
   const router = useRouter();
 
@@ -94,7 +96,9 @@ const Profile = () => {
               <p className={styles.name}>{profile?.username}</p>
               <p className={styles.role}>{profile?.primary_group}</p>
               <p className={styles.llogin}>
-                {new Date(profile?.last_login).toLocaleDateString("it-IT", {
+                {new Date(
+                  profile?.last_login ? profile?.last_login : new Date()
+                ).toLocaleDateString("it-IT", {
                   weekday: "long",
                   year: "numeric",
                   month: "long",

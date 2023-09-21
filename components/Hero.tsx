@@ -37,7 +37,7 @@ const Hero = (props: any) => {
         <Link href={previous[0] ? previous[0] : "/"}>{previous[1]}</Link>
 
         <Link className={styles.active} href={current[0] ? current[0] : "/"}>
-          {current[1]}
+          {current[1] != "News" ? current[1] : props.crumb[1]}
         </Link>
       </p>
     </section>

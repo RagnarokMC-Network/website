@@ -8,8 +8,10 @@ import utils from "@/utils/utils";
 
 import styles from "./page.module.scss";
 
+import type { NewsPost } from "@/utils/types";
+
 const Post = ({ params }: { params: { id: number } }) => {
-  const [post, setPost]: any = useState(null);
+  const [post, setPost] = useState<NewsPost>();
 
   useEffect(() => {
     if (params.id) {
@@ -25,7 +27,7 @@ const Post = ({ params }: { params: { id: number } }) => {
     <main>
       <Hero
         title={post?.title ? post.title : ""}
-        crumb={["Home", "News"]}
+        crumb={["Home", post?.title ? post.title.substring(0, 12) + "..." : ""]}
         href={["/", "/news/" + params.id]}
       />
 
@@ -40,7 +42,9 @@ const Post = ({ params }: { params: { id: number } }) => {
             />
           </div>
           <div className={styles.text}>
-            <div dangerouslySetInnerHTML={{ __html: post?.body }}></div>
+            <div
+              dangerouslySetInnerHTML={{ __html: post?.body ? post?.body : "" }}
+            ></div>
           </div>
         </div>
       </section>
