@@ -52,6 +52,8 @@ const CreateNews = () => {
         image: immagine,
       }),
     });
+
+    router.push("/");
   };
 
   const convertBase64 = (file: any) => {

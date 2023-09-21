@@ -33,6 +33,7 @@ const Home = () => {
       .then((data) => data.json())
       .then((json) => {
         console.log(json);
+        json.sort((a: any, b: any) => a.annunci_id - b.annunci_id);
         setPosts(json);
       });
 
