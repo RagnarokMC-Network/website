@@ -3,15 +3,21 @@
 import executeQuery from "@/utils/connector";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { MdPreview, MdCatalog } from "md-editor-rt";
 import Hero from "@/components/Hero";
 import utils from "@/utils/utils";
 
+import "md-editor-rt/lib/preview.css";
 import styles from "./page.module.scss";
 
 import type { NewsPost } from "@/utils/types";
 
+const scrollElement = document.documentElement;
+
 const Post = ({ params }: { params: { id: number } }) => {
   const [post, setPost] = useState<NewsPost>();
+  const [text] = useState("# Hello Editor");
+  const [id] = useState("preview-only");
 
   useEffect(() => {
     if (params.id) {
@@ -42,9 +48,15 @@ const Post = ({ params }: { params: { id: number } }) => {
             />
           </div>
           <div className={styles.text}>
-            <div
-              dangerouslySetInnerHTML={{ __html: post?.body ? post?.body : "" }}
-            ></div>
+            <div>
+              <MdPreview
+                language="en-US"
+                theme="dark"
+                editorId={id}
+                modelValue={post?.body ? post?.body : ""}
+              />
+              <MdCatalog editorId={id} scrollElement={scrollElement} />
+            </div>
           </div>
         </div>
       </section>
