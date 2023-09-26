@@ -1,0 +1,12 @@
+@import "@/components/_variables.module.scss";
+
+.newsContainer {
+  margin: 200px $LATERAL_PADDING 0 $LATERAL_PADDING;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100px;
+  column-gap: 40px;
+  row-gap: 60px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

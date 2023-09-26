@@ -5,7 +5,7 @@ import { FiUser, FiFolder, FiArrowRight } from "react-icons/fi";
 
 import styles from "./CardNews.module.scss";
 
-import type { Post } from "@/utils/types";
+import type { NewsPost } from "@/utils/types";
 
 const CardNews = (props: any) => {
   return (

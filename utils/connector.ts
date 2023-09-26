@@ -39,7 +39,7 @@ const dbAuth = mysql({
 
 const dbNews = mysql({
   config: {
-    host: "92.246.122.192",
+    host: "92.246.115.179",
     database: "ragnarok",
     user: "admin",
     password: "Iq6b6zriPIe%y3fS",

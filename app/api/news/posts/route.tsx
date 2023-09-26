@@ -21,7 +21,7 @@ export async function GET(request: Request) {
   } else {
     const articles: any = await executeQuery({
       query: "SELECT * FROM annunci",
-      values: null,
+      values: [],
       dbs: "ragnarok",
     });
 
