@@ -1,5 +1,5 @@
 import getConfig from "next/config";
-import type { Profile } from "./types";
+import type { UserProfile } from "./types";
 
 const permissions = [
   { id: "owner", color: "#bf0f0f" },
