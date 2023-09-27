@@ -1,0 +1,44 @@
+@import "@/components/_variables.module.scss";
+
+.wrapper {
+  margin: 240px 120px 10px 120px;
+}
+
+.buttons {
+  margin: 10px 120px 120px 120px;
+
+  button[type="submit"] {
+    background-color: $COLOR_QUATERNARY;
+    color: $COLOR_QUINTERNARY;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button[type="button"] {
+    background-color: transparent;
+    color: $COLOR_QUINTERNARY;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 0px;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button[type="reset"] {
+    background-color: $COLOR_DANGER;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 7px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

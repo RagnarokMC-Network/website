@@ -34,6 +34,38 @@ export async function GET(request: Request) {
   }
 }
 
+export async function PUT(req: Request) {
+  const data = await req.json();
+
+  let id = data.id;
+  let modification_date = data.last_modification_date;
+  let body = data.body;
+
+  await executeQuery({
+    query:
+      "UPDATE annunci SET body=?, last_modification_date=? WHERE annunci_id=?",
+    values: [body, modification_date, id],
+    dbs: "ragnarok",
+  });
+
+  return NextResponse.json({});
+}
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const postId = searchParams.get("postId");
+
+  if (!postId) return NextResponse.json({});
+
+  await executeQuery({
+    query: "DELETE FROM annunci WHERE annunci_id=?",
+    values: [postId],
+    dbs: "ragnarok",
+  });
+
+  return NextResponse.json({});
+}
+
 export async function POST(req: Request) {
   const data = await req.json();
 

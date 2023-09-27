@@ -12,8 +12,6 @@ import styles from "./page.module.scss";
 
 import type { NewsPost } from "@/utils/types";
 
-const scrollElement = document.documentElement;
-
 const Post = ({ params }: { params: { id: number } }) => {
   const [post, setPost] = useState<NewsPost>();
   const [text] = useState("# Hello Editor");
@@ -55,7 +53,7 @@ const Post = ({ params }: { params: { id: number } }) => {
                 editorId={id}
                 modelValue={post?.body ? post?.body : ""}
               />
-              <MdCatalog editorId={id} scrollElement={scrollElement} />
+              <MdCatalog editorId={id} />
             </div>
           </div>
         </div>

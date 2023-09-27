@@ -1,15 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { FiUser, FiFolder, FiArrowRight } from "react-icons/fi";
+import { FiUser, FiFolder, FiArrowRight, FiEdit } from "react-icons/fi";
+import { useProfileStore } from "@/utils/useProfileStore";
+import utils from "@/utils/utils";
 
 import styles from "./CardNews.module.scss";
 
-import type { NewsPost } from "@/utils/types";
+import type { NewsPost, UserProfile } from "@/utils/types";
 
 const CardNews = (props: any) => {
+  const profile: UserProfile = useProfileStore((state: any) => state.profile);
+
   return (
     <div className={styles.card}>
+      {utils.isStaffer() ? (
+        <Link href={"/news/edit/" + props.post.annunci_id}>
+          <FiEdit className={styles.edit} />
+        </Link>
+      ) : (
+        <></>
+      )}
+
       <div className={styles.propic}>
         <Image
           src={props.post.images ? props.post.images : "/background.webp"}

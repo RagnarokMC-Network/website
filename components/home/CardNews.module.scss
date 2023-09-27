@@ -8,7 +8,7 @@
   border-radius: 20px;
   overflow: hidden;
   display: inline-block;
-  cursor: pointer;
+  position: relative;
 
   &:hover > .propic img {
     transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -23,6 +23,17 @@
   &:hover > .body .more p {
     color: $COLOR_PRIMARY;
     transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .edit {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   .propic {

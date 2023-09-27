@@ -118,7 +118,7 @@ const CreateNews = () => {
           onChange={setContenuto}
           theme="dark"
         />
-        ;<button onClick={onSubmit}>Crea</button>
+        <button onClick={onSubmit}>Crea</button>
       </div>
     </main>
   );
