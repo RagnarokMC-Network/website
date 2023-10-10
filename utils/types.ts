@@ -23,4 +23,27 @@ export type UserProfile = {
   uuid: string | null;
 };
 
+export type UserPunishment = {
+  id: number;
+  uuid: string | null;
+  ip: string | null;
+  reason: string | null;
+  banned_by_uuid: string;
+  banned_by_name: string | null;
+  removed_by_uuid: string | null;
+  removed_by_name: string | null;
+  removed_by_reason: string | null;
+  removed_by_date: Date | null;
+  time: number;
+  until: number;
+  template: number;
+  server_scope: string | null;
+  server_origin: string | null;
+  silent: boolean;
+  ipban: boolean;
+  ipban_windcard: boolean;
+  active: any;
+  typeof: string | null;
+}
+
 export type NotificationType = "success" | "info" | "warning" | "error";

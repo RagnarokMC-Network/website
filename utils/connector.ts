@@ -28,6 +28,15 @@ const dbPerms = mysql({
   },
 });
 
+const dbLitebans = mysql({
+  config: {
+    host: "66.45.252.244",
+    database: "s63_litebans",
+    user: "itadmin",
+    password: "!mre5XDx941u$kym",
+  },
+});
+
 const dbAuth = mysql({
   config: {
     host: "66.45.252.244",
@@ -39,7 +48,7 @@ const dbAuth = mysql({
 
 const dbNews = mysql({
   config: {
-    host: "92.246.115.179",
+    host: "127.0.0.1",
     database: "ragnarok",
     user: "admin",
     password: "Iq6b6zriPIe%y3fS",
@@ -56,8 +65,23 @@ export default async function excuteQuery({
   dbs: string;
 }) {
   try {
-    let db =
-      dbs == "s64_nLogin" ? dbAuth : dbs == "ragnarok" ? dbNews : dbPerms;
+    let db = dbNews
+    
+    switch (dbs) {
+      case "s63_litebans":
+        db = dbLitebans;
+        break;
+      case "s63_luckperms":
+        db = dbPerms;
+        break;
+      case "s64_nLogin":
+        db = dbAuth;
+        break;
+      case "ragnarok":
+        db = dbNews;
+        break;
+    }
+
     const results = await db.query(query, values);
     await db.end();
     return results;

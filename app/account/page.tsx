@@ -3,24 +3,64 @@
 import jsCookie from "js-cookie";
 import Image from "next/image";
 
+import { Table, Badge } from "antd";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import styles from "./page.module.scss";
 
-import { useProfileStore } from "@/utils/useProfileStore";
-
 import Hero from "@/components/Hero";
 import SectionDescriptor from "@/components/home/SectionDescriptor";
 import Settings from "@/components/account/Settings";
-import utils from "@/utils/utils";
 
-import type { UserProfile } from "@/utils/types";
+import utils from "@/utils/utils";
+import { useProfileStore } from "@/utils/useProfileStore";
+
+import type { UserProfile, UserPunishment } from "@/utils/types";
+
+const columns = [
+  {
+    title: "Tipo",
+    dataIndex: "typeof",
+    key: "typeof"
+  },
+  {
+    title: "Motivo",
+    dataIndex: "reason",
+    key: "reason",
+    render: ((reason: string) => reason.charAt(0).toUpperCase() + reason.slice(1))
+  },
+  {
+    title: "Autore",
+    dataIndex: "banned_by_name",
+    key: "banned_by_name",
+    render: ((author: string) => author ? author : "Console")
+  },
+  {
+    title: "Inizio",
+    dataIndex: "time",
+    key: "time",
+    render: ((date: string) => new Date(date).toLocaleString("it-IT", { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"2-digit", minute:"2-digit"}))
+  },
+  {
+    title: "Fine",
+    dataIndex: "until",
+    key: "until",
+    render: ((date: string) => new Date(date).toLocaleString("it-IT", { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"2-digit", minute:"2-digit"}))
+  },
+  {
+    title: "Attivo",
+    dataIndex: "active",
+    key: "active",
+    render: ((active: any) => active.data[0] == 1 ? <Badge status="success" text="Si" /> : <Badge status="error" text="No" />)
+  },
+]
 
 const Profile = () => {
   const [usr, setUsr] = useState("");
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState(false);
+  const [punishments, setPunishments] = useState<UserPunishment[]>([])
   const { setGProfile }: any = useProfileStore();
   const profile: UserProfile = useProfileStore((state: any) => state.profile);
 
@@ -69,9 +109,26 @@ const Profile = () => {
     let item = localStorage.getItem("profile");
     let json = item !== null ? JSON.parse(item) : "";
     setErr(false);
-
+    
     if (json.username) setGProfile(json);
     else setGProfile(null);
+
+    fetch(`${utils.endpoint}/api/account/punishments?uuid=${json.uuid}`)
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json)
+          if (json.error == false) {
+            let punishes: UserPunishment[] = []
+            let bans: UserPunishment[] = json.data["bans"].map(((v: UserPunishment) => ({...v, typeof: "BAN"})));
+            let warns: UserPunishment[] = json.data["warns"].map(((v: UserPunishment) => ({...v, typeof: "WARN"})))
+            let mutes: UserPunishment[] = json.data["mutes"].map(((v: UserPunishment) => ({...v, typeof: "MUTE"})))
+            punishes.push(...bans)
+            punishes.push(...warns)
+            punishes.push(...mutes)
+
+            setPunishments(punishes)
+          }
+        });
   }, []);
 
   return (
@@ -110,11 +167,11 @@ const Profile = () => {
               </button>
             </div>
           </div>
-          {/*
           <div className={styles.wrapper}>
-            <Settings />
+              <div className={styles.table}>
+                <Table dataSource={punishments ? punishments : []} columns={columns} />
+              </div>
           </div>
-              */}
         </>
       ) : (
         <>

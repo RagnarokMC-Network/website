@@ -29,5 +29,5 @@ export default {
       return false;
     }
   },
-  endpoint: "dev" == "dev" ? "http://localhost:3002" : "https://ragnarokmc.it",
+  endpoint: "https://ragnarokmc.it",
 };

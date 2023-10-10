@@ -291,7 +291,7 @@ const Regolamento = () => {
                         aggravanti.
                       </li>
                       <li>
-Non è possibile presentare reclami per i singoli warn o per sanzioni di tipo ban e mute derivate dai warn stessi (per esempio dopo il terzo warn c'è il ban temporaneo), salvo nell’immediatezza della sanzione (24 ore) e con valide prove che esso sia ingiusto.
+Non è possibile presentare reclami per i singoli warn o per sanzioni di tipo ban e mute derivate dai warn stessi (per esempio dopo il terzo warn c&apos;è il ban temporaneo), salvo nell’immediatezza della sanzione (24 ore) e con valide prove che esso sia ingiusto.
                       </li>
                     </ul>
                   </li>
@@ -1002,7 +1002,7 @@ Non è possibile presentare reclami per i singoli warn o per sanzioni di tipo ba
                     </ul>
                   </li>
                   <li>
-                    Chiunque fornisce informazioni non veritiere ad un'utente inesperto per trollarlo e/o a non aiutarlo a progredire verrà sanzionato con un mute da 15 a 45 minuti e un possibile warn.
+                    Chiunque fornisce informazioni non veritiere ad un&apos;utente inesperto per trollarlo e/o a non aiutarlo a progredire verrà sanzionato con un mute da 15 a 45 minuti e un possibile warn.
                     <ul>
                       <li>
                         Un giocatore inesperto è un giocatore con un tempo di gioco effettivo inferiore alle 24 ore.
@@ -1010,14 +1010,17 @@ Non è possibile presentare reclami per i singoli warn o per sanzioni di tipo ba
                     </ul>
                   </li>
                   <li>
-                    Un'utente che imposta dei permessi sulla town ad un altro giocatore si assume tutta la responsabilità, in caso di grief, mob uccisi ecc.
+                    Un&apos;utente che imposta dei permessi sulla town ad un altro giocatore si assume tutta la responsabilità, in caso di grief, mob uccisi ecc.
                   </li>
                   <li>
-                    Sono vietate qualsiasi tipo di end farm, l'infrazione comporta un warn e rimozione completa della farm.
+                    Sono vietate qualsiasi tipo di end farm, l&apos;infrazione comporta un warn e rimozione completa della farm.
                   </li>
                   <li>
-                    Rovinare appositamente e in modo abbastanza significativo paesaggi nelle vicinanze di town comporta un warn.
+                    Costruire/grieffare nelle prossimità di un&apos;altra town in modo significativo (es: provocare esplosioni o piazzare blocchi a caso) può comportare un warn
                     <ul>
+                      <li>
+                        sono escluse le strutture per raggiungere la town come i pillar o tunnel
+                      </li>
                       <li>
                         la decisione è a completa discrezione dello staff.
                       </li>

@@ -48,6 +48,15 @@
 
 .wrapper {
   width: 100%;
+  padding: $LATERAL_PADDING;
+
+  .table {
+    .punishment {
+      display: flex;
+      color: white;
+      justify-content: space-around;
+    }
+  }
 }
 
 .section {
