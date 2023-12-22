@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import {RxHamburgerMenu} from "react-icons/rx";
 import { usePathname } from "next/navigation";
 import jsCookie from "js-cookie";
 
@@ -13,6 +14,7 @@ import { useProfileStore } from "@/utils/useProfileStore";
 const Navbar = () => {
   const pathname = usePathname();
   let [active, setActive] = useState("/");
+  let [openNav, setOpenNav] = useState(false);
   let [previous, setPrevious] = useState("/");
   const { setGProfile }: any = useProfileStore();
   const profile = useProfileStore((state: any) => state.profile);
@@ -37,6 +39,8 @@ const Navbar = () => {
 
     let token = jsCookie.get("lgntkn");
     let item = window.localStorage.getItem("profile");
+
+    setOpenNav(false)
 
     if (!token) {
       window.localStorage.removeItem("profile");
@@ -105,6 +109,14 @@ const Navbar = () => {
     setPrevious(ePrevious?.path);
   }, [pathname]);
 
+  const Hamburger = () => {
+    if (openNav)
+      setOpenNav(false)
+    else
+      setOpenNav(true)
+    console.log(openNav)
+  }
+
   return (
     <nav className={styles.nav}>
       <div className={styles.logo_wrapper}>
@@ -117,18 +129,8 @@ const Navbar = () => {
           />
           <h3>RagnarokMC</h3>
         </div>
-        <p>
-          Apertura 10/09 ore 15:00!
-          <br />
-          <Link
-            href="https://www.youtube.com/watch?v=M8v404e6D6k"
-            target="_blank"
-          >
-            TRAILER
-          </Link>
-        </p>
       </div>
-      <div className={styles.links_cnt}>
+      <div className={openNav ? `${styles.links_cnt_wide}` : `${styles.links_cnt}`}>
         <ul>
           {endpoints.map((el, i) => {
             return profile && profile.username && el.path == "/account" ? (
@@ -154,6 +156,7 @@ const Navbar = () => {
               )
             );
           })}
+          <RxHamburgerMenu onClick={Hamburger} className={styles.ham} color="white" />
         </ul>
       </div>
     </nav>

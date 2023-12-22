@@ -4,20 +4,8 @@
   display: flex;
   flex-direction: column;
 
-  p {
-    color: white;
-    font-size: 16px;
-    margin: 5px 0 auto 0;
-    position: relative;
-
-    a {
-      color: white;
-      font-weight: bold;
-    }
-  }
-
   .logo_cnt {
-    margin: auto 0 0 0;
+    margin: auto 0 auto 0;
     display: flex;
 
     img {
@@ -32,6 +20,81 @@
     }
   }
 }
+.links_cnt_wide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: #1a1c1fd6;
+  display: flex;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    list-style: none;
+
+    .ham {
+      position: fixed;
+      top: 45px;
+      right: $LATERAL_PADDING;
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+
+    li:not(.profile) {
+      margin: 10px;
+      padding: 5px 10px;
+      max-height: 29px;
+      transition: 0.15s;
+      position: relative;
+      cursor: pointer;
+      z-index: 2;
+      text-align: center;
+
+      a {
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: 0.15s;
+        font-size: 20px;
+      }
+    }
+
+    .profile {
+      margin: 25px;
+      background-color: $COLOR_PRIMARY;
+      border-radius: 6px;
+      height: 42px;
+      cursor: pointer;
+
+      &:hover span {
+        transition: 0.15s;
+        color: white;
+      }
+
+      a {
+        padding: 0 0 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 42px;
+        font-size: 24px;
+
+        span {
+          margin-right: 5px;
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          transition: 0.15s;
+        }
+      }
+    }
+  }
+}
+
 .links_cnt {
   display: flex;
   height: 100%;
@@ -41,6 +104,10 @@
     display: flex;
     margin: auto;
     list-style: none;
+
+    .ham {
+      display: none;
+    }
 
     li:not(.profile) {
       margin: 5px;
@@ -165,33 +232,15 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-  .links_cnt ul li {
-    font-size: 14px;
-    margin: 3px;
-    padding: 3px 5px;
+@media screen and (max-width: 1000px) {
+
+  .links_cnt li {
+    display: none;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .nav {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-
-    .logo_cnt {
-      img {
-        margin: auto 5px auto 0;
-      }
-    }
-
-    .links_cnt {
-      margin-left: 0;
-      margin-right: auto;
-
-      ul {
-        margin: 0 0 auto 0;
-      }
-    }
+  .links_cnt ul .ham {
+    display: block;
+    width: 30px;
+    height: 30px;
   }
 }

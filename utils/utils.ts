@@ -30,4 +30,5 @@ export default {
     }
   },
   endpoint: "https://ragnarokmc.it",
+  //endpoint: "http://localhost:3001",
 };
